@@ -2751,10 +2751,31 @@ html {
     --gray-900: #ffffff;
 }
 
+html[dir="ltr"] .nav-logo .logo-text {
+    font-size: 1.4rem;
+    margin-right: 32px;
+}
+
+html[dir="rtl"] .nav-logo .logo-text {
+    font-size: 1.4rem;
+    margin-left: 32px;
+}
+.scrolled .nav-menu a {
+    color: #ffffff;
+}
+.quote-banner {
+    /* padding: 5px 15px; */
+    width: max-content;
+}
+
+.quote-text {
+    margin-right: 15px;
+}
+
 </style>
 <body>
     <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
+    <!-- <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="loading-logo">
                 <h2>عبدالفتاح درابسة</h2>
@@ -2767,7 +2788,7 @@ html {
                 <div class="progress-bar"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Language Toggle -->
     <div class="language-toggle">
