@@ -33,7 +33,652 @@
     <link rel="preload" href="script.js" as="script">
 </head>
 <style>
+    
     /* Modern CSS Reset & Variables for 2025 */
+    .experience {
+    padding: var(--space-5xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.experience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+.experience .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced Section Header */
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--primary-gradient);
+    color: var(--white);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Modern Timeline */
+.modern-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    margin-bottom: var(--space-3xl);
+    position: relative;
+}
+
+.timeline-card {
+    background: var(--white);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--gray-200);
+    position: relative;
+}
+
+.timeline-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-gradient);
+}
+
+.timeline-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.current-position .timeline-card::before {
+    background: var(--warning-gradient);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-xl) var(--space-xl) var(--space-lg);
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+}
+
+.position-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-gradient);
+    color: var(--white);
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+.position-icon.current {
+    background: var(--warning-gradient);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: var(--shadow-md); }
+    to { box-shadow: 0 0 20px rgba(250, 112, 154, 0.4); }
+}
+
+.position-meta {
+    text-align: right;
+}
+
+.current-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: var(--success-gradient);
+    color: var(--white);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--white);
+    border-radius: 50%;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.timeline-date {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    margin-bottom: var(--space-xs);
+}
+
+.duration {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+/* Card Content */
+.card-content {
+    padding: 0 var(--space-xl) var(--space-xl);
+}
+
+.position-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-md);
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.company-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.company-location {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--gray-500);
+    font-size: 0.9rem;
+}
+
+.position-description {
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    font-size: 1rem;
+}
+
+/* Key Achievements */
+.key-achievements {
+    background: var(--gray-50);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-lg);
+    border-left: 4px solid var(--warning-gradient);
+}
+
+.key-achievements h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: var(--space-md);
+}
+
+.achievements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.achievements-list li {
+    position: relative;
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.achievements-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #43e97b;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Impact Metrics */
+.impact-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+    border-radius: var(--radius-lg);
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* Skills Tags */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.skill-tag {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--gray-200);
+}
+
+.skill-tag:hover {
+    background: var(--primary-gradient);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.skill-tag.primary {
+    background: var(--primary-gradient);
+    color: var(--white);
+    border-color: transparent;
+}
+
+/* Career Summary */
+.career-summary {
+    background: var(--white);
+    padding: var(--space-3xl);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+    margin-top: var(--space-4xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.career-summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-gradient);
+}
+
+.career-summary h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-2xl);
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-xl);
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--gray-50);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--gray-200);
+}
+
+.summary-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: var(--white);
+}
+
+.summary-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    background: var(--primary-gradient);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.summary-content {
+    text-align: left;
+}
+
+.summary-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--gray-800);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .modern-timeline {
+        max-width: 100%;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+    
+    .position-meta {
+        text-align: center;
+    }
+    
+    .company-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--space-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .experience {
+        padding: var(--space-4xl) 0;
+    }
+    
+    .timeline-item {
+        margin-bottom: var(--space-2xl);
+    }
+    
+    .card-header,
+    .card-content {
+        padding: var(--space-lg);
+    }
+    
+    .position-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .position-title {
+        font-size: 1.3rem;
+    }
+    
+    .impact-metrics {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: var(--space-md);
+        padding: var(--space-md);
+    }
+    
+    .metric-number {
+        font-size: 1.5rem;
+    }
+    
+    .summary-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .summary-item {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .summary-content {
+        text-align: center;
+    }
+    
+    .career-summary {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+    
+    .career-summary h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-header,
+    .card-content {
+        padding: var(--space-md);
+    }
+    
+    .position-title {
+        font-size: 1.2rem;
+    }
+    
+    .company-name {
+        font-size: 1rem;
+    }
+    
+    .position-description {
+        font-size: 0.95rem;
+    }
+    
+    .skills-tags {
+        gap: var(--space-xs);
+    }
+    
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: var(--space-xs) var(--space-sm);
+    }
+    
+    .key-achievements {
+        padding: var(--space-md);
+    }
+    
+    .achievements-list li {
+        font-size: 0.9rem;
+        padding-left: var(--space-md);
+    }
+    
+    .impact-metrics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+        padding: var(--space-sm);
+    }
+    
+    .metric-number {
+        font-size: 1.3rem;
+    }
+    
+    .metric-label {
+        font-size: 0.8rem;
+    }
+    
+    .summary-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .summary-number {
+        font-size: 1.5rem;
+    }
+    
+    .summary-label {
+        font-size: 0.85rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .experience {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+    }
+    
+    .timeline-card {
+        background: var(--gray-800);
+        border-color: var(--gray-700);
+        color: var(--white);
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, var(--gray-700) 0%, var(--gray-800) 100%);
+    }
+    
+    .position-title,
+    .company-name {
+        color: var(--white);
+    }
+    
+    .position-description,
+    .company-location {
+        color: var(--gray-300);
+    }
+    
+    .career-summary {
+        background: var(--gray-800);
+        color: var(--white);
+    }
+    
+    .summary-item {
+        background: var(--gray-700);
+        border-color: var(--gray-600);
+    }
+    
+    .summary-item:hover {
+        background: var(--gray-600);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .experience {
+        background: white;
+        padding: 2rem 0;
+    }
+    
+    .timeline-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+    }
+    
+    .position-icon {
+        background: #333 !important;
+    }
+    
+    .career-summary {
+        break-inside: avoid;
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    .timeline-card,
+    .summary-item,
+    .skill-tag {
+        transition: none;
+    }
+    
+    .current-badge,
+    .pulse-dot,
+    .position-icon.current {
+        animation: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .timeline-card {
+        border: 2px solid #000;
+    }
+    
+    .position-title,
+    .company-name {
+        color: #000;
+    }
+    
+    .skill-tag {
+        border: 1px solid #000;
+    }
+}
 *,
 *::before,
 *::after {
@@ -3060,98 +3705,251 @@ html[dir="rtl"] .nav-logo .logo-text {
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="experience" aria-label="Experience Section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-badge" data-ar="الخبرات المهنية" data-en="Professional Experience">الخبرات المهنية</div>
-                <h2 class="section-title" data-ar="مسيرة حافلة بالإنجازات والتطوير" data-en="A Journey Full of Achievements and Development">مسيرة حافلة بالإنجازات والتطوير</h2>
-                <p class="section-subtitle" data-ar="خبرة متنوعة في قيادة الفرق وتطوير الاستراتيجيات التجارية" data-en="Diverse experience in team leadership and commercial strategy development">خبرة متنوعة في قيادة الفرق وتطوير الاستراتيجيات التجارية</p>
+   <section id="experience" class="experience" aria-label="Experience Section">
+    <div class="container">
+        <!-- Enhanced Section Header -->
+        <div class="section-header" data-aos="fade-up">
+            <div class="section-badge" data-ar="الخبرات المهنية" data-en="Professional Experience">
+                <i class="fas fa-briefcase"></i>
+                <span>الخبرات المهنية</span>
             </div>
+            <h2 class="section-title" data-ar="مسيرة حافلة بالإنجازات والتطوير" data-en="A Journey Full of Achievements and Development">
+                مسيرة حافلة بالإنجازات والتطوير
+            </h2>
+            <p class="section-subtitle" data-ar="خبرة متنوعة في قيادة الفرق وتطوير الاستراتيجيات التجارية" data-en="Diverse experience in team leadership and commercial strategy development">
+                خبرة متنوعة في قيادة الفرق وتطوير الاستراتيجيات التجارية
+            </p>
+        </div>
 
-            <div class="timeline">
-                <div class="timeline-item current" data-aos="fade-right" data-aos-delay="100">
-                    <div class="timeline-marker">
-                        <i class="fas fa-crown"></i>
+        <!-- Modern Timeline -->
+        <div class="modern-timeline">
+            <!-- Current Position -->
+            <div class="timeline-item current-position" data-aos="fade-up" data-aos-delay="100">
+                <div class="timeline-card">
+                    <div class="card-header">
+                        <div class="position-icon current">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="position-meta">
+                            <div class="current-badge">
+                                <span class="pulse-dot"></span>
+                                <span data-ar="الحالي" data-en="Current">الحالي</span>
+                            </div>
+                            <div class="timeline-date">2023 - <span data-ar="الآن" data-en="Present">الآن</span></div>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-badge current-badge" data-ar="الحالي" data-en="Current">الحالي</div>
-                        <div class="timeline-date">2023 - الآن</div>
-                        <h3 data-ar="مدير التميز التجاري" data-en="Commercial Excellence Director">مدير التميز التجاري</h3>
-                        <div class="company">Axantia</div>
-                        <p data-ar="قيادة استراتيجيات التميز التجاري وتطوير فعالية القوى البيعية مع التركيز على بناء ثقافة الأداء المتميز والتحسين المستمر. تطبيق مبدأ 'قوموا اشتغلوا' في جميع جوانب العمل لتحقيق نتائج استثنائية." data-en="Leading commercial excellence strategies and developing sales force effectiveness with focus on building performance culture and continuous improvement. Applying 'Get Up and Work' principle in all aspects of work to achieve exceptional results.">
+                    
+                    <div class="card-content">
+                        <h3 class="position-title" data-ar="مدير التميز التجاري" data-en="Commercial Excellence Director">
+                            مدير التميز التجاري
+                        </h3>
+                        <div class="company-info">
+                            <div class="company-name">Axantia</div>
+                            <div class="company-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-ar="الأردن" data-en="Jordan">الأردن</span>
+                            </div>
+                        </div>
+                        
+                        <p class="position-description" data-ar="قيادة استراتيجيات التميز التجاري وتطوير فعالية القوى البيعية مع التركيز على بناء ثقافة الأداء المتميز والتحسين المستمر. تطبيق مبدأ 'قوموا اشتغلوا' في جميع جوانب العمل لتحقيق نتائج استثنائية." data-en="Leading commercial excellence strategies and developing sales force effectiveness with focus on building performance culture and continuous improvement. Applying 'Get Up and Work' principle in all aspects of work to achieve exceptional results.">
                             قيادة استراتيجيات التميز التجاري وتطوير فعالية القوى البيعية مع التركيز على بناء ثقافة الأداء المتميز والتحسين المستمر. تطبيق مبدأ "قوموا اشتغلوا" في جميع جوانب العمل لتحقيق نتائج استثنائية.
                         </p>
-                        <div class="achievements">
-                            <span class="achievement-tag">SFE Excellence</span>
-                            <span class="achievement-tag" data-ar="التدريب الاحترافي" data-en="Professional Training">التدريب الاحترافي</span>
-                            <span class="achievement-tag" data-ar="القيادة الاستراتيجية" data-en="Strategic Leadership">القيادة الاستراتيجية</span>
-                            <span class="achievement-tag" data-ar="تطوير الفرق" data-en="Team Development">تطوير الفرق</span>
+
+                        <!-- Key Achievements -->
+                        <div class="key-achievements">
+                            <h4 data-ar="الإنجازات الرئيسية:" data-en="Key Achievements:">الإنجازات الرئيسية:</h4>
+                            <ul class="achievements-list">
+                                <li data-ar="تطوير وتنفيذ استراتيجيات SFE متقدمة" data-en="Developed and implemented advanced SFE strategies">تطوير وتنفيذ استراتيجيات SFE متقدمة</li>
+                                <li data-ar="قيادة فرق متعددة الجنسيات بكفاءة عالية" data-en="Led multinational teams with high efficiency">قيادة فرق متعددة الجنسيات بكفاءة عالية</li>
+                                <li data-ar="تحقيق نمو 25% في الأداء التجاري" data-en="Achieved 25% growth in commercial performance">تحقيق نمو 25% في الأداء التجاري</li>
+                            </ul>
+                        </div>
+
+                        <div class="skills-tags">
+                            <span class="skill-tag primary">SFE Excellence</span>
+                            <span class="skill-tag" data-ar="التدريب الاحترافي" data-en="Professional Training">التدريب الاحترافي</span>
+                            <span class="skill-tag" data-ar="القيادة الاستراتيجية" data-en="Strategic Leadership">القيادة الاستراتيجية</span>
+                            <span class="skill-tag" data-ar="تطوير الفرق" data-en="Team Development">تطوير الفرق</span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
-                    <div class="timeline-marker">
-                        <i class="fas fa-globe"></i>
+            <!-- Previous Positions -->
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-card">
+                    <div class="card-header">
+                        <div class="position-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="position-meta">
+                            <div class="timeline-date">2020 - 2023</div>
+                            <div class="duration">3 <span data-ar="سنوات" data-en="years">سنوات</span></div>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2020 - 2023</div>
-                        <h3 data-ar="مدير القدرات التجارية" data-en="Commercial Capability Manager">مدير القدرات التجارية</h3>
-                        <div class="company">AstraZeneca - <span data-ar="منطقة الشرق الأدنى" data-en="Near East Region">منطقة الشرق الأدنى</span></div>
-                        <p data-ar="تطوير وإدارة القدرات التجارية للفرق عالية الأداء عبر منطقة الشرق الأدنى مع التركيز على التدريب المتخصص والتطوير المهني المستمر وبناء ثقافة العمل الجاد." data-en="Developing and managing commercial capabilities for high-performance teams across the Near East region with focus on specialized training and continuous professional development while building a culture of hard work.">
+                    
+                    <div class="card-content">
+                        <h3 class="position-title" data-ar="مدير القدرات التجارية" data-en="Commercial Capability Manager">
+                            مدير القدرات التجارية
+                        </h3>
+                        <div class="company-info">
+                            <div class="company-name">AstraZeneca</div>
+                            <div class="company-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-ar="منطقة الشرق الأدنى" data-en="Near East Region">منطقة الشرق الأدنى</span>
+                            </div>
+                        </div>
+                        
+                        <p class="position-description" data-ar="تطوير وإدارة القدرات التجارية للفرق عالية الأداء عبر منطقة الشرق الأدنى مع التركيز على التدريب المتخصص والتطوير المهني المستمر وبناء ثقافة العمل الجاد." data-en="Developing and managing commercial capabilities for high-performance teams across the Near East region with focus on specialized training and continuous professional development while building a culture of hard work.">
                             تطوير وإدارة القدرات التجارية للفرق عالية الأداء عبر منطقة الشرق الأدنى مع التركيز على التدريب المتخصص والتطوير المهني المستمر وبناء ثقافة العمل الجاد.
                         </p>
-                        <div class="achievements">
-                            <span class="achievement-tag" data-ar="تطوير القدرات" data-en="Capability Development">تطوير القدرات</span>
-                            <span class="achievement-tag" data-ar="الإدارة الإقليمية" data-en="Regional Management">الإدارة الإقليمية</span>
-                            <span class="achievement-tag" data-ar="الأداء المتميز" data-en="Excellence Performance">الأداء المتميز</span>
-                            <span class="achievement-tag" data-ar="التدريب المتقدم" data-en="Advanced Training">التدريب المتقدم</span>
+
+                        <div class="impact-metrics">
+                            <div class="metric">
+                                <div class="metric-number">500+</div>
+                                <div class="metric-label" data-ar="موظف مدرب" data-en="Employees Trained">موظف مدرب</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">15</div>
+                                <div class="metric-label" data-ar="دولة" data-en="Countries">دولة</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-number">95%</div>
+                                <div class="metric-label" data-ar="رضا المتدربين" data-en="Satisfaction Rate">رضا المتدربين</div>
+                            </div>
+                        </div>
+
+                        <div class="skills-tags">
+                            <span class="skill-tag" data-ar="تطوير القدرات" data-en="Capability Development">تطوير القدرات</span>
+                            <span class="skill-tag" data-ar="الإدارة الإقليمية" data-en="Regional Management">الإدارة الإقليمية</span>
+                            <span class="skill-tag" data-ar="الأداء المتميز" data-en="Excellence Performance">الأداء المتميز</span>
+                            <span class="skill-tag" data-ar="التدريب المتقدم" data-en="Advanced Training">التدريب المتقدم</span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
-                    <div class="timeline-marker">
-                        <i class="fas fa-chalkboard-teacher"></i>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="timeline-card">
+                    <div class="card-header">
+                        <div class="position-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="position-meta">
+                            <div class="timeline-date">2018 - 2020</div>
+                            <div class="duration">2 <span data-ar="سنوات" data-en="years">سنوات</span></div>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2018 - 2020</div>
-                        <h3 data-ar="مسؤول تدريب Levant" data-en="Levant Training Manager">مسؤول تدريب Levant</h3>
-                        <div class="company">AstraZeneca</div>
-                        <p data-ar="إدارة البرامج التدريبية الاستراتيجية وتطوير الفرق عالية الأداء مع التركيز على بناء القدرات المحلية والتطوير المستدام وترسيخ قيم العمل الجاد والاستمرارية." data-en="Managing strategic training programs and developing high-performance teams with focus on building local capabilities and sustainable development while establishing values of hard work and continuity.">
+                    
+                    <div class="card-content">
+                        <h3 class="position-title" data-ar="مسؤول تدريب Levant" data-en="Levant Training Manager">
+                            مسؤول تدريب Levant
+                        </h3>
+                        <div class="company-info">
+                            <div class="company-name">AstraZeneca</div>
+                            <div class="company-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-ar="بلاد الشام" data-en="Levant Region">بلاد الشام</span>
+                            </div>
+                        </div>
+                        
+                        <p class="position-description" data-ar="إدارة البرامج التدريبية الاستراتيجية وتطوير الفرق عالية الأداء مع التركيز على بناء القدرات المحلية والتطوير المستدام وترسيخ قيم العمل الجاد والاستمرارية." data-en="Managing strategic training programs and developing high-performance teams with focus on building local capabilities and sustainable development while establishing values of hard work and continuity.">
                             إدارة البرامج التدريبية الاستراتيجية وتطوير الفرق عالية الأداء مع التركيز على بناء القدرات المحلية والتطوير المستدام وترسيخ قيم العمل الجاد والاستمرارية.
                         </p>
-                        <div class="achievements">
-                            <span class="achievement-tag" data-ar="التدريب الاستراتيجي" data-en="Strategic Training">التدريب الاستراتيجي</span>
-                            <span class="achievement-tag" data-ar="تطوير الفرق" data-en="Team Development">تطوير الفرق</span>
-                            <span class="achievement-tag" data-ar="بناء القدرات" data-en="Capability Building">بناء القدرات</span>
-                            <span class="achievement-tag" data-ar="القيادة المحلية" data-en="Local Leadership">القيادة المحلية</span>
+
+                        <div class="skills-tags">
+                            <span class="skill-tag" data-ar="التدريب الاستراتيجي" data-en="Strategic Training">التدريب الاستراتيجي</span>
+                            <span class="skill-tag" data-ar="تطوير الفرق" data-en="Team Development">تطوير الفرق</span>
+                            <span class="skill-tag" data-ar="بناء القدرات" data-en="Capability Building">بناء القدرات</span>
+                            <span class="skill-tag" data-ar="القيادة المحلية" data-en="Local Leadership">القيادة المحلية</span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
-                    <div class="timeline-marker">
-                        <i class="fas fa-user-tie"></i>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="timeline-card">
+                    <div class="card-header">
+                        <div class="position-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="position-meta">
+                            <div class="timeline-date">2015 - 2018</div>
+                            <div class="duration">3 <span data-ar="سنوات" data-en="years">سنوات</span></div>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2015 - 2018</div>
-                        <h3 data-ar="مدير المبيعات الإقليمي" data-en="Regional Sales Manager">مدير المبيعات الإقليمي</h3>
-                        <div class="company">AstraZeneca</div>
-                        <p data-ar="قيادة فرق المبيعات الإقليمية وتحقيق الأهداف التجارية مع التركيز على بناء علاقات قوية مع العملاء وتطوير استراتيجيات مبيعات مبتكرة تعتمد على العمل الجاد والمثابرة." data-en="Leading regional sales teams and achieving commercial objectives with focus on building strong customer relationships and developing innovative sales strategies based on hard work and perseverance.">
+                    
+                    <div class="card-content">
+                        <h3 class="position-title" data-ar="مدير المبيعات الإقليمي" data-en="Regional Sales Manager">
+                            مدير المبيعات الإقليمي
+                        </h3>
+                        <div class="company-info">
+                            <div class="company-name">AstraZeneca</div>
+                            <div class="company-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-ar="الأردن" data-en="Jordan">الأردن</span>
+                            </div>
+                        </div>
+                        
+                        <p class="position-description" data-ar="قيادة فرق المبيعات الإقليمية وتحقيق الأهداف التجارية مع التركيز على بناء علاقات قوية مع العملاء وتطوير استراتيجيات مبيعات مبتكرة تعتمد على العمل الجاد والمثابرة." data-en="Leading regional sales teams and achieving commercial objectives with focus on building strong customer relationships and developing innovative sales strategies based on hard work and perseverance.">
                             قيادة فرق المبيعات الإقليمية وتحقيق الأهداف التجارية مع التركيز على بناء علاقات قوية مع العملاء وتطوير استراتيجيات مبيعات مبتكرة تعتمد على العمل الجاد والمثابرة.
                         </p>
-                        <div class="achievements">
-                            <span class="achievement-tag" data-ar="قيادة المبيعات" data-en="Sales Leadership">قيادة المبيعات</span>
-                            <span class="achievement-tag" data-ar="تحقيق الأهداف" data-en="Target Achievement">تحقيق الأهداف</span>
-                            <span class="achievement-tag" data-ar="إدارة العملاء" data-en="Customer Management">إدارة العملاء</span>
-                            <span class="achievement-tag" data-ar="الاستراتيجية" data-en="Strategy">الاستراتيجية</span>
+
+                        <div class="skills-tags">
+                            <span class="skill-tag" data-ar="قيادة المبيعات" data-en="Sales Leadership">قيادة المبيعات</span>
+                            <span class="skill-tag" data-ar="تحقيق الأهداف" data-en="Target Achievement">تحقيق الأهداف</span>
+                            <span class="skill-tag" data-ar="إدارة العملاء" data-en="Customer Management">إدارة العملاء</span>
+                            <span class="skill-tag" data-ar="الاستراتيجية" data-en="Strategy">الاستراتيجية</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Career Summary Stats -->
+        <div class="career-summary" data-aos="fade-up" data-aos-delay="500">
+            <h3 data-ar="ملخص المسيرة المهنية" data-en="Career Summary">ملخص المسيرة المهنية</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="summary-content">
+                        <div class="summary-number">15+</div>
+                        <div class="summary-label" data-ar="سنة خبرة" data-en="Years Experience">سنة خبرة</div>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="summary-content">
+                        <div class="summary-number">1000+</div>
+                        <div class="summary-label" data-ar="موظف مدرب" data-en="Employees Trained">موظف مدرب</div>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="summary-content">
+                        <div class="summary-number">20+</div>
+                        <div class="summary-label" data-ar="دولة" data-en="Countries">دولة</div>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="summary-content">
+                        <div class="summary-number">50+</div>
+                        <div class="summary-label" data-ar="مشروع ناجح" data-en="Successful Projects">مشروع ناجح</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Education Section -->
     <section id="education" class="education" aria-label="Education Section">
@@ -3384,44 +4182,89 @@ html[dir="rtl"] .nav-logo .logo-text {
             </div>
 
             <!-- Contact Form -->
-            <div class="contact-form-section" data-aos="fade-up" data-aos-delay="400">
-                <div class="contact-form-container">
-                    <h3 data-ar="أرسل رسالة مباشرة" data-en="Send Direct Message">أرسل رسالة مباشرة</h3>
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="company" data-ar="الشركة" data-en="Company">الشركة</label>
-                            <input type="text" id="company" name="company">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" data-ar="الموضوع" data-en="Subject">الموضوع</label>
-                            <select id="subject" name="subject" required>
-                                <option value="" data-ar="اختر الموضوع" data-en="Select Subject">اختر الموضوع</option>
-                                <option value="training" data-ar="التدريب والتطوير" data-en="Training & Development">التدريب والتطوير</option>
-                                <option value="consulting" data-ar="الاستشارات" data-en="Consulting">الاستشارات</option>
-                                <option value="speaking" data-ar="المحاضرات" data-en="Speaking">المحاضرات</option>
-                                <option value="collaboration" data-ar="التعاون" data-en="Collaboration">التعاون</option>
-                                <option value="other" data-ar="أخرى" data-en="Other">أخرى</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" data-ar="الرسالة" data-en="Message">الرسالة</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <span data-ar="إرسال الرسالة" data-en="Send Message">إرسال الرسالة</span>
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                        </button>
-                    </form>
-                </div>
+           <div class="contact-form-section" data-aos="fade-up" data-aos-delay="400">
+    <div class="contact-form-container">
+        <h3 data-ar="أرسل رسالة مباشرة" data-en="Send Direct Message">أرسل رسالة مباشرة</h3>
+        
+        <!-- تحديث الفورم ليعمل مع Formspree -->
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            
+            <!-- Hidden fields for better email organization -->
+            <input type="hidden" name="_subject" value="رسالة جديدة من موقع عبدالفتاح درابسة">
+            <input type="hidden" name="_next" value="https://your-website.com/thank-you.html">
+            <input type="hidden" name="_language" value="ar">
+            <input type="hidden" name="_cc" value="backup@your-email.com">
+            
+            <div class="form-group">
+                <label for="name" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+                <input type="text" id="name" name="name" required 
+                       placeholder="أدخل اسمك الكامل"
+                       data-ar-placeholder="أدخل اسمك الكامل" 
+                       data-en-placeholder="Enter your full name">
             </div>
+
+            <div class="form-group">
+                <label for="email" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="company" data-ar="الشركة" data-en="Company">الشركة</label>
+                <input type="text" id="company" name="company" 
+                       placeholder="اسم الشركة (اختياري)"
+                       data-ar-placeholder="اسم الشركة (اختياري)" 
+                       data-en-placeholder="Company name (optional)">
+            </div>
+
+            <!-- إضافة حقل رقم الهاتف -->
+            <div class="form-group">
+                <label for="phone" data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</label>
+                <input type="tel" id="phone" name="phone" 
+                       placeholder="+962 XX XXX XXXX"
+                       data-ar-placeholder="+962 XX XXX XXXX" 
+                       data-en-placeholder="+962 XX XXX XXXX">
+            </div>
+
+            <div class="form-group">
+                <label for="subject" data-ar="الموضوع" data-en="Subject">الموضوع</label>
+                <select id="subject" name="subject" required>
+                    <option value="" data-ar="اختر الموضوع" data-en="Select Subject">اختر الموضوع</option>
+                    <option value="training" data-ar="التدريب والتطوير" data-en="Training & Development">التدريب والتطوير</option>
+                    <option value="consulting" data-ar="الاستشارات" data-en="Consulting">الاستشارات</option>
+                    <option value="speaking" data-ar="المحاضرات" data-en="Speaking">المحاضرات</option>
+                    <option value="collaboration" data-ar="التعاون" data-en="Collaboration">التعاون</option>
+                    <option value="sfe" data-ar="SFE والتميز التجاري" data-en="SFE & Commercial Excellence">SFE والتميز التجاري</option>
+                    <option value="blue-ocean" data-ar="استراتيجية المحيط الأزرق" data-en="Blue Ocean Strategy">استراتيجية المحيط الأزرق</option>
+                    <option value="other" data-ar="أخرى" data-en="Other">أخرى</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message" data-ar="الرسالة" data-en="Message">الرسالة</label>
+                <textarea id="message" name="message" rows="5" required 
+                          placeholder="اكتب رسالتك هنا..."
+                          data-ar-placeholder="اكتب رسالتك هنا..." 
+                          data-en-placeholder="Write your message here..."></textarea>
+            </div>
+
+            <!-- تحديث زر الإرسال -->
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                <span class="btn-text">
+                    <span data-ar="إرسال الرسالة" data-en="Send Message">إرسال الرسالة</span>
+                    <i class="fas fa-paper-plane btn-icon" aria-hidden="true"></i>
+                </span>
+                <span class="btn-loading" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span data-ar="جاري الإرسال..." data-en="Sending...">جاري الإرسال...</span>
+                </span>
+            </button>
+
+            <!-- رسائل الحالة -->
+            <div id="formStatus" class="form-status" style="display: none;"></div>
+        </form>
+    </div>
+</div>
         </div>
     </section>
 
